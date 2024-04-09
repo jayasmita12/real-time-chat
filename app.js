@@ -8,9 +8,9 @@ const server = http.createServer(app)
 const io = new Server(server)
 
 //app root file(index.html) connected
-app.use(express.static("../public"))
+app.use(express.static("./public"))
 app.get("/" , (req , res)=>{
-    return res.sendFile("../public/index.html")
+    return res.sendFile("./public/index.html")
 })
 
 let users = {}
