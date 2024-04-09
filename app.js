@@ -6,11 +6,12 @@ const {Server} = require("socket.io")
 const app = express();
 const server = http.createServer(app)
 const io = new Server(server)
+const PORT =process.env.PORT || 9340
 
 //app root file(index.html) connected
-app.use(express.static("./public"))
+app.use(express.static(__dirname + "/public"))
 app.get("/" , (req , res)=>{
-    return res.sendFile("./public/index.html")
+    return res.sendFile(__dirname + "/index.html")
 })
 
 let users = {}
@@ -30,7 +31,6 @@ io.on('connection', (socket) => {
     });
 });
 
-const PORT =process.env.PORT || 9340
 
 //server listen on port number
 server.listen(PORT , ()=> console.log(`Server started in the port ${PORT}`))
